@@ -3,6 +3,7 @@ include_once '../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = trim($_POST['nome']);
+    $instagram = trim($_POST['instagram']);
     $data_nascimento = $_POST['data_nascimento'];
     $tipo = $_POST['tipo'];
 
@@ -28,20 +29,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     try {
-        $sql = "INSERT INTO aniversariantes (nome, data_nascimento, tipo, foto) VALUES (:nome, :data_nascimento, :tipo, :foto)";
+        $sql = "INSERT INTO aniversariantes (nome, instagram, data_nascimento, tipo, foto) VALUES (:nome,:instagram , :data_nascimento, :tipo, :foto)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':nome' => $nome,
+            ':instagram' => $instagram,
             ':data_nascimento' => $data_nascimento,
             ':tipo' => $tipo,
             ':foto' => $foto_caminho
         ]);
         
-        echo "Cadastro realizado com sucesso!";
+        header("Location: ../index.php?success=1");
+        exit();
     } catch (PDOException $e) {
         die("Erro ao cadastrar: " . $e->getMessage());
     }
 } else {
     die("Método inválido.");
 }
-?>
+
