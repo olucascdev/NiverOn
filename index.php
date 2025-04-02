@@ -1,3 +1,9 @@
+<?php
+
+include_once '../config/database.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,7 +15,7 @@
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 class="text-2xl font-bold text-center mb-6">🎉Aniversáriante da Next🎉</h2>
-        <form action="#" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <form action="controllers/aniversariantes.php" method="POST" enctype="multipart/form-data" class="space-y-4">
             <div>
                 <label for="nome" class="block text-gray-700 font-medium">Nome Completo</label>
                 <input type="text" id="nome" name="nome" required
